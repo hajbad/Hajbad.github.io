@@ -1,0 +1,81 @@
+{% set container = theme.settings.fluid_container ? 'container-fluid' : 'container' %}
+
+
+
+{%
+    set navbar_classes = [
+    'navbar',
+    theme.settings.navbar_inverse ? 'navbar-inverse' : 'navbar-default',
+    theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
+]
+%}
+<header class="header">
+    <!-- Navbar -->
+    <nav id="navbar"  class="navbar navbar-expand-lg navbar-light  scrolling-navbar ">
+        <div class="container">
+            {#<a class="navbar-brand" href="#"><strong>Epsops</strong></a>#}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+                    aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse  navbar-collapse" id="navbarSupportedContent-7">
+            {# Header #}
+            {% if page.header %}
+                {% block header %}
+
+                        {#<div class="col-sm-12" role="heading">#}
+                            {{ page.header }}
+                        {#</div>#}
+
+                {% endblock %}
+            {% endif %}
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+</header>
+{% if page.local_tasks %}
+    {% block local_tasks %}
+        {{ page.local_tasks }}
+    {% endblock %}
+{% endif %}
+
+<div class="view   jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://mdbootstrap.com/img/Photos/Others/gradient2.png'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-purple-slight d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container">
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+                <!--Grid column-->
+                <div class="col-md-12 text-center">
+                    <h1 class="display-4 font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInUp">Something Amazing is coming..!!</h1>
+                    <h5 class="pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 wow fadeInUp" data-wow-delay="0.2s">It comes
+                        with a lot of new features, Check it out now..!</h5>
+                    <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <a class="btn btn-purple btn-rounded" href="/user/register"><i class="fa fa-user left"></i> Sign up!</a>
+                        <a class="btn btn-outline-purple btn-rounded"><i class="fa fa-book left"></i> Learn more</a>
+                    </div>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+</div>
+
+{% if page.footer %}
+    {% block footer %}
+        {#<footer id="footer" class="footer page-footer elegant-color-dark mt-4 " role="contentinfo">#}
+            {#{{ page.footer }}#}
+        {#</footer>#}
+
+        {{ drupal_block('footer_content_block') }}
+
+    {% endblock %}
+{% endif %}
+

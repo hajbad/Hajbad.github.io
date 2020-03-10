@@ -1,0 +1,221 @@
+<?php
+
+
+
+
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Path;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Session\AccountInterface;
+
+module_load_include('inc', 'smart_content', 'essential_func');
+
+
+
+/**
+ * hook_theme()
+ * @return array
+ */
+function smart_contents_theme() {
+  return[
+//    'user_save_form'=> [
+//      'render element' => 'form',
+//    ],
+    'video_save_form'=> [
+      'render element' => 'form',
+
+    ],
+    'video_promo_form'=> [
+      'render element' => 'form',
+    ],
+    'epsops_user_login_form'=> [
+      'render element' => 'form',
+      'template' => 'forms/epsops-user-login-form'
+    ],
+    'footer_content'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class'=>NULL),
+      'template' => 'footer-content'
+    ],
+    'video_basic'=> [
+      'variables' => array ('snips' => NULL,'stats' => NULL,'vars' => NULL,'id' => NULL,'published' => NULL,'class' => NULL),
+      'template' => 'video-basic'
+    ],
+    'video_thumb'=> [
+      'variables' => array ('title'=>NULL,'vars' => NULL,'id' => NULL,'content' => NULL,'class' => NULL),
+      'template' => 'video/video-thumb'
+    ],
+    'video_basic_teaser'=> [
+      'variables' => array ('snips' => NULL,'stats' => NULL,'vars' => NULL,'id' => NULL,'class' => NULL,'extra' => NULL),
+      'template' => 'video-basic-teaser'
+    ],
+    'channel_basic_teaser'=> [
+      'variables' => array ('snips' => NULL,'stats' => NULL,'vars' => NULL,'id' => NULL,'class' => 'col-sm-4 col-md-3 col-lg-2'),
+      'template' => 'channel-basic-teaser'
+    ],
+    'v_stats_items'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'v-stats-items'
+    ],
+    'ch_basic'=> [
+      'variables' => array ('snips' => NULL,'stats' => NULL,'brand' => NULL,'vars' => NULL,'id' => NULL,'class' => NULL),
+      'template' => 'channel-basic'
+    ],
+    'yt_form_videos'=> [
+      'variables' => array ('form' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'class' => NULL),
+      'template' => 'yt-form-videos'
+    ],
+    'content_accordion'=> [
+      'variables' => array ('title' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'content-accordion'
+    ],
+    'content_tabs'=> [
+      'variables' => array ('title' => NULL,'items' => NULL,'vars' => ['class'=>'col-sm-4 col-md-3 col-lg-2','chVideosModal'=>FALSE,'position'=>['x'=>'right','y'=>'top']],'id' => 'plain-modal','parent' => NULL,),
+      'template' => 'content-tabs'
+    ],
+    'content_modal'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'content-modal'
+    ],
+    'content_card'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'content-card'
+    ],
+    'content_carousel'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'content-carousel'
+    ],
+    'chart_level_indicator'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'chart-level-indicator'
+    ],
+    'video_carousel_item'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+      'template' => 'video-carousel-item'
+    ],
+    'card_reversed_cascade'=> [
+      'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,),
+      'template' => 'card-reversed-cascade'
+    ],
+      'user_ideas_teaser'=> [
+          'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,),
+          'template' => 'user-ideas/user-ideas-teaser'
+      ],
+      'user_ideas_page'=> [
+          'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,),
+          'template' => 'user-ideas/user-ideas-page'
+      ],
+      'grids_2'=> [
+          'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'grid1' => NULL,'grid2' => NULL,),
+          'template' => 'grids/contents-grids-2'
+      ],
+      'grids_3'=> [
+          'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'grid1' => NULL,'grid2' => NULL,'grid3' => NULL,),
+          'template' => 'grids/contents-grids-3'
+      ],
+      'card_styled'=> [
+        'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+        'template' => 'card-styled'
+      ],
+      'content_grids_multiple'=> [
+        'variables' => array ('title' => NULL,'content' => NULL,'items' => NULL,'vars' => NULL,'id' => NULL,'parent' => NULL,'class' => NULL),
+        'template' => 'grids/content-grids-multiple'
+      ],
+
+  ];
+}
+
+
+
+
+/**
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ *
+ * @return mixed
+ */
+function smart_contents_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if($form_id == 'node_channel_form'){
+    $q = \Drupal::request()->query->all();
+
+
+    if(isset($q['title'])) $form['title']['widget'][0]['value']['#default_value'] = $q['title'];
+    if(isset($q['published'])) $form['field_ch_published']['widget'][0]['value']['#default_value'] = Drupal\Core\Datetime\DrupalDateTime::createFromTimestamp($q['published']);
+    if(isset($q['ch_view_count'])) $form['field_ch_view_count']['widget'][0]['value']['#default_value'] = $q['ch_view_count'];
+    if(isset($q['ch_video_count'])) $form['field_ch_video_count']['widget'][0]['value']['#default_value'] = $q['ch_video_count'];
+    if(isset($q['ch_comment_count'])) $form['field_ch_comment_count']['widget'][0]['value']['#default_value'] = $q['ch_comment_count'];
+    if(isset($q['scount'])) $form['field_scount']['widget'][0]['value']['#default_value'] = $q['scount'];
+    if(isset($q['cron_v_maintain_duration'])) $form['field_cron_v_maintain_duration']['widget'][0]['value']['#default_value'] = $q['cron_v_maintain_duration'];
+    if(isset($q['ch_image_url'])) $form['field_ch_image_url']['widget'][0]['value']['#default_value'] = $q['ch_image_url'];
+    if(isset($q['ch_id'])) $form['field_ch_id']['widget'][0]['value']['#default_value'] = $q['ch_id'];
+
+//    //ksm($form['field_ch_published']['widget'][0] );
+//    $form['field_ch_themes']['widget']['target_id']['#default_value'] = [Drupal\taxonomy\Entity\Term::load(177)];
+
+  }
+
+  if($form_id == 'node_channel_edit_form'){
+//    //ksm($form['field_ch_published']['widget'][0] );
+  }
+  return $form;
+}
+
+
+/**
+ * @param \Drupal\block\Entity\Block $block
+ * @param $operation
+ * @param \Drupal\Core\Session\AccountInterface $account
+ */
+function smart_contents_block_access(Block $block, $operation, AccountInterface $account) {
+  $nodeid = \Drupal::service('path.current')->getPath();
+  $path = explode('/', trim(\Drupal::request()->query->get('q'), '/'));
+  if ($path[0] == "" && \Drupal::service('path.matcher')->isFrontPage() != true) {
+    $path = explode('/', trim(\Drupal::service('path.alias_manager')->getAliasByPath($nodeid), '/'));
+  }
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  // - unset language id if present in path.
+  if($path[0] == $language) unset($path[0]);
+  $path = "/" . join("/",$path);
+  $conditions = $block->getVisibilityConditions()->getConfiguration();
+  if (count($conditions) > 0 && !empty($conditions['request_path'])) {
+    $pages = explode("\n", $conditions['request_path']['pages']);
+    foreach ($pages as $p) {
+      $pttr = '#^\!#';
+      if (preg_match($pttr, $p) === 1) {
+        $excl = trim(preg_replace($pttr, "", $p));
+        if (fnmatch($excl, $nodeid) || fnmatch($excl, $path)) {
+          $config['pages'] = $excl;
+          $config['context_mapping'] = array();
+          if (isset($conditions['negate']) && $conditions['negate'] ==  TRUE) {
+            $config['negate'] = FALSE;
+          }
+          else {
+            $config['negate'] = TRUE;
+          }
+          $block->setVisibilityConfig('request_path', $config);
+
+          break;
+        }
+      }
+    }
+  }
+}
+
+/**
+ *  Implements hook_form_FORM_ID_alter().
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function smart_contents_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $form['#theme'] = 'epsops_user_login_form';
+  $form['name']['#description'] = NULL;
+  $form['pass']['#description'] = NULL;
+}
+
+
+
+

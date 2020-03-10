@@ -1,0 +1,8 @@
+<div class="masonry-grid">
+        <div class="row views-infinite-scroll-content-wrapper masonry-items">
+            {% for item in items %}
+                {#<div data-target="#{{ id }}" data-slide-to="{{ loop.index }}"></div>#}
+                <div class="{{ vars.itemClass }}">{{ item }}</div>
+            {% endfor %}
+        </div>
+</div>

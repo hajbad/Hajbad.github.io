@@ -1,0 +1,88 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+#      css/font-awesome.min.css: {}
+      #dist/easy-autocomplete.min.css: {}
+      #dist/easy-autocomplete.themes.min.css: {}
+global-scripts:
+  version: VERSION
+  js:
+    js/ajax-load.js: { scope: footer }
+    js/script.js: { scope: footer }
+
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.cookie
+    - core/modernizr
+
+list-sort:
+  version: VERSION
+  js:
+    js/list.min.js: { scope: footer }
+
+masonry:
+  version: VERSION
+  js:
+    libraries/masonry/imagesloaded.pkgd.min.js: { scope: footer }
+    libraries/masonry/masonry.pkgd.min.js: { scope: footer }
+
+
+bootstrap:
+  css:
+    theme:
+      MDB/css/bootstrap.min.css: { minified: true }
+#  js:
+#      MDB/js/bootstrap.min.js: { minified: true, weight: -19 }
+  dependencies:
+    - core/jquery
+
+fontawesome:
+  css:
+    theme:
+#      libraries/fontawesome/css/all.min.css: { minified: true }
+      libraries/fontawesome/css/all.min.css: { minified: true }
+  js:
+    libraries/fontawesome/js/all.min.js: { minified: true }
+
+
+
+
+mdb:
+  css:
+    theme:
+#      MDB/css/mdb.min.css: { minified: true }
+      MDB/css/compiled.min.css: { minified: true }
+  js:
+    MDB/js/compiled.min.js: { minified: true, weight: -20 }
+    MDB/js/popper.min.js: { minified: true, weight: -19 }
+#    MDB/js/mdb.js: { weight: -20 }
+  dependencies:
+    - epsops/bootstrap
+
+custom-ajax-prototype:
+ js:
+   js/custom-ajax-commands.js: {}
+ dependencies:
+   - core/drupal.ajax
+
+#highcharts:
+#  remote: https://code.highcharts.com/highcharts.js
+#  version: VERSION
+#  license:
+#      name: Non-commercial
+#      url: https://creativecommons.org/licenses/by-nc/3.0/
+#      gpl-compatible: false
+#  js:
+#    libraries/highcharts/highcharts.js: {}
+#    libraries/highcharts/wordcloud.js: {}
+#    libraries/highcharts/network-graph.js: {}
+#    libraries/highcharts/heatmap.js: {}
+#    libraries/highcharts/funnel.js: {}
+#    libraries/highcharts_more/highcharts-more.js: {}
+#    libraries/highcharts_exporting/exporting.js: {}
+#    libraries/highcharts_export-data/export-data.js: {}
+#    libraries/highcharts_accessibility/accessibility.js: {}
+#    libraries/highcharts_3d/highcharts-3d.js: {}
+#

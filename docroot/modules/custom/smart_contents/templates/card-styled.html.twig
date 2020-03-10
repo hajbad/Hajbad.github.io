@@ -1,0 +1,22 @@
+{% set trendQ = vars.items.records[0]  %}
+
+<div id="card-styled-{{ id }}">
+    <div class="card card-image my-3" style="background-image: url({{ vars.themeSettings.img_url }});">
+        <div class="text-white text-center d-flex justify-content-center {{ vars.themeSettings.bgColor }} py-5 px-4">
+            <div>
+                <h5 class="bolder"><a href="/trends/stories?loc={{ trendQ.location }}&ctg={{ trendQ.category }}&count=500"><span class="{{ vars.themeSettings.color }}-text ">{{ title }}</span></a></h5>
+                {#<h3 class="card-title pt-2"><strong>{{ title }}</strong></h3>#}
+{#{{ kint(vars) }}#}
+                <div class="bolder my-4">
+                    {% for item in  vars.items.records %}
+                        <div><a href="/trend/story/{{ item.story_id }}"  data-toggle="tooltip" data-placement="top" data-original-title="{{ item.title }}">   {{ item.title|length > 34 ? item.title|slice(0, 34)|raw ~ '..' : item.title  }}</a></div>
+                    {% endfor %}
+                </div>
+                <a href="/trends/stories?loc={{ trendQ.location }}&ctg={{ trendQ.category }}&count=500" class="  btn btn-{{ vars.themeSettings.color }} waves-effect waves-light btn-rounded" target="_blank"><i class="fas fa-clone left"></i> More Topics</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
