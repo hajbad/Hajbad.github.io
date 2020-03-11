@@ -1,0 +1,35 @@
+<!--Card-->
+<div class="card card-cascade wider reverse my-4">
+
+    <!--Card image-->
+    <div class="view overlay">
+        <img src="{{ vars.obj.getBrandingSettings().image.bannerTabletHdImageUrl }}" class="img-fluid img-fluid">
+        <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+    <!--/Card image-->
+
+    <!--Card content-->
+    <div class="card-body text-center">
+        <!--Title-->
+        <h4 class="card-title"><strong>{{ vars.obj.snippet.title }}</strong></h4>
+        <h5 class="indigo-text"><strong>{{ vars.obj.snippet.publishedAt|date("d M Y") }}</strong></h5>
+        <span class="indigo-image"><img src="{{ vars.obj.getSnippet().getThumbnails().default.url }}" class="img-fluid rounded-circle" /></span>
+        <p class="card-text">
+            {{ vars.obj.snippet.description }}
+        </p>
+        <!--Linkedin-->
+        <a class="icons-sm li-ic"><i class="fas fa-linkedin"> </i></a>
+        <!--Twitter-->
+        <a class="icons-sm tw-ic"><i class="fas fa-twitter"> </i></a>
+        <!--Dribbble-->
+        <a class="icons-sm fb-ic"><i class="fas fa-facebook"> </i></a>
+
+    </div>
+    <!--/.Card content-->
+
+</div>
+<!--/.Card-->
+{{ kint(vars.obj) }}
+{{ kint(vars.obj.getBrandingSettings()) }}

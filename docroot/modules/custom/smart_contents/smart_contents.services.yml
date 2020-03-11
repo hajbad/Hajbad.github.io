@@ -1,0 +1,11 @@
+# src/smart_contents.services.yml
+services:
+  smart_contents.twig.SmartTwigs:
+    class: \Drupal\smart_contents\SmartTwigs
+    tags:
+      - { name: twig.extension }
+
+  smart_contents.route_subscriber:
+    class: Drupal\smart_contents\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

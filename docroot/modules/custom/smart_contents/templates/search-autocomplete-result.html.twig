@@ -1,0 +1,15 @@
+<div class="w-100 darken-4" class="search-result-{{ id }}">
+    <h1> {{ vars.type }}</h1>
+    <div class=" row   ">
+        <div class="col-lg-4 col-md-12 col-12">
+            <div class="">
+                {{ name }}
+            </div>
+            <div class="col-lg-8 col-md-12 col-12 {{ vars.iconDet }}">
+                {% if vars.type == 'Videos' %}
+                  <img src = "https://img.youtube.com/vi/ {{ vars.iconDet }}/default.jpg"/>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

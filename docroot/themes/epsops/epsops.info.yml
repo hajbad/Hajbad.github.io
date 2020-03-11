@@ -1,0 +1,38 @@
+core: 8.x
+type: theme
+base theme: bootstrap
+
+name: 'Epsops'
+description: 'Uses the Bootstrap framework LESS source files and must be compiled (not for beginners).'
+package: 'Bootstrap'
+
+regions:
+  site_logo: 'Site Logo'
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  header: 'Top Bar'
+  breadcrumbs: 'Breadcrumbs'
+  local_tasks: 'Local Tasks'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  after_content: 'Second Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  no_region: 'No Region'
+
+libraries:
+  - 'epsops/global-styling'
+  - 'epsops/global-scripts'
+  - 'epsops/list-sort'
+#  - 'epsops/custom-ajax-prototype'
+  - 'epsops/mdb'
+#  - 'epsops/highcharts'
+  - 'epsops/masonry'
+#  - 'epsops/fontawesome'
+#  - 'ajax_loading_blocks/ajax-loading-scripts'
+#  - 'epsops/react'
+#  - 'epsops/react-components'
