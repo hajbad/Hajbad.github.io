@@ -1,0 +1,53 @@
+
+{#<div class="d-flex flex-column">#}
+    {#<div class=""></div>#}
+{#</div>#}
+
+
+<!-- Vertical Steppers -->
+<div class="row mt-1 chart-level-indicator text-nowrap">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+        <!-- Stepers Wrapper -->
+        <ul class="stepper stepper-vertical ">
+
+
+            {% for item in items.reg %}
+                {% set activeIndicator = item.active ? '<span class="indicator"><i class="fas fa-arrow-right fa-3x"></i></span>' : '' %}
+                {% set activeDot = item.active ? 'warning' : '' %}
+                {% set activeColor = item.active ? 'orange-text' : 'white-text' %}
+            <li>
+                <a href="#!">
+                     {{ activeIndicator|raw  }}<span class="circle {{ item.color }}">{{ item.vg|round }}</span>
+                    <span class="label {{ activeColor }} ">{{ item.title }}</span>
+                </a>
+            </li>
+            {% endfor %}
+
+
+        </ul>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+        <!-- Stepers Wrapper -->
+        <ul class="stepper stepper-vertical">
+
+
+            {% for item in items.norm %}
+                {% set activeIndicator = item.active ? '<span class="indicator"><i class="fas fa-arrow-right fa-3x"></i></span>' : '' %}
+                {% set activeDot = item.active ? 'warning' : '' %}
+                {% set activeColor = item.active ? 'orange-text' : 'white-text' %}
+            <li>
+                <a href="#!">
+                     {{ activeIndicator|raw  }}<span class="circle {{ item.color }}">{{ item.vg|round }}</span>
+                    <span class="label {{ activeColor }} ">{{ item.title }}</span>
+                </a>
+            </li>
+            {% endfor %}
+
+
+        </ul>
+
+    </div>
+</div>

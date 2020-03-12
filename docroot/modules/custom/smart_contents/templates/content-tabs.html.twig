@@ -1,0 +1,31 @@
+
+<div id="{{ id }}" class="{{ class }}">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-justified grey darken-3">
+        {% for item in items %}
+            {% set active = item.active ? 'active' : '' %}
+            <li class="nav-item">
+                <a class="nav-link bolder {{ active }}" data-toggle="tab" href="#{{ item.id }}" role="tab">{{ item.title }}</a>
+            </li>
+        {% endfor %}
+        {#<li class="nav-item">#}
+            {#<a class="nav-link ajax-tab bolder " data-toggle="tab" href="#testing-tab" role="tab">Testing</a>#}
+        {#</li>#}
+    </ul>
+
+    <!-- Tab panels -->
+    <div class="tab-content card">
+        {% for item in items %}
+            {% set activeDiv = item.active ? 'in show active' : '' %}
+            <!--Panel 1-->
+            <div class="tab-pane fade {{ activeDiv }}" id="{{ item.id }}" role="tabpanel">
+                <br>
+                {{ item.content }}
+            </div>
+        {% endfor %}
+        {#<div class="tab-pane fade " id="testing-tab" role="tabpanel">#}
+            {#<br>#}
+        {#</div>#}
+    </div>
+</div>

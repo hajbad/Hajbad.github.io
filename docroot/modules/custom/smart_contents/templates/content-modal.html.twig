@@ -1,0 +1,42 @@
+{% set button_class = vars.btn_class ? vars.btn_class : 'btn-floating btn-action d-flex flex-center  grey darken-3' %}
+{% set forceRefresh = vars.forceRefresh ? '  ' : '' %}
+{% set show = vars.forceShow ? 'forced-model-open' : 'fade' %}
+<span class="trigger-action trigger-action-{{ id }}">
+<a type="button" class="{{ button_class }}  " data-toggle="modal" data-target="#modal-{{ id }}"
+   data-related-id="{{ id }}" data-request-url="{{ vars.targetUrl }}"  >
+    <i class="fas fa-{{ vars.btn_icon ? vars.btn_icon : 'cog' }} mr-1"></i>{{ vars.btn_label }}
+</a>
+{% if vars.btn_counter or vars.btn_counter ==  '0' %}
+    <span class="counter">{{ vars.btn_counter }}</span>
+{% endif %}
+</span>
+
+<div class="modal  {{ show }} {{ class }}" id="modal-{{ id }}" {{ forceRefresh }} tabindex="-1" role="dialog" aria-labelledby="{{ vars.title_id }}" aria-hidden="true">
+    <div class="modal-dialog {{ vars.modalTypeClass }}" role="document">
+        <div class="modal-content {{ vars.modalContentClass }} {{ vars.isForm }}grey darken-3">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ vars.title_id }}">{{ title }} <small>{{ vars.extraParam }}</small></h5>
+                <div class="action-item-selected"></div>
+                {% if not vars.forceRefresh %}
+                <button type="button" class="btn-xs" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% endif %}
+
+            </div>
+            <div id="modal-body-{{ id }}" class="modal-body  flex-lg-row {{ vars.modalBodyClass }}">
+                <div class="flex-wrap ">{{ content }}</div>
+
+            </div>
+            <div class="modal-footer justify-content-between {{ vars.modalFooterClass }}">
+                <div class="pull-left"> <div id="modal-extra-{{ id }}"></div></div>
+                {% if not vars.forceRefresh %}
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                {% endif %}
+            </div>
+            {% if vars.modalFooterClass == 'd-none'%}
+                <div class="fixed-bottom-right"> <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>
+            {% endif %}
+        </div>
+    </div>
+</div>
